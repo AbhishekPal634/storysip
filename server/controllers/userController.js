@@ -71,8 +71,8 @@ exports.updateUserProfile = async (req, res) => {
 // Delete user account
 exports.deleteUser = async (req, res) => {
   try {
-    // Check if user is deleting their own account
-    if (req.params.id !== req.user.id) {
+    // Check if user is deleting their own account or is an admin
+    if (req.params.id !== req.user.id && req.user.role !== "admin") {
       return res.status(403).json({ message: "Not authorized" });
     }
 
