@@ -38,8 +38,8 @@ router.put(
   reviewController.updateReview
 );
 
-// Delete review
-router.delete("/:id", [auth, adminAuth], reviewController.deleteReview);
+// Delete review (users can delete their own reviews, admins can delete any)
+router.delete("/:id", auth, reviewController.deleteReview);
 
 // Like/unlike review
 router.post("/:id/like", auth, reviewController.toggleLike);

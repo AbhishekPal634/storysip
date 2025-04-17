@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Review = require("../models/Review");
+const Book = require("../models/Book");
 
 // Get user profile
 exports.getUserProfile = async (req, res) => {
@@ -20,6 +22,26 @@ exports.getUserProfile = async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get user reviews
+exports.getUserReviews = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    // Find all reviews by the user and populate book details
+    const reviews = await Review.find({ user: userId })
+      .populate({
+        path: "book",
+        select: "title author coverImage",
+      })
+      .sort({ createdAt: -1 });
+
+    res.json(reviews);
+  } catch (error) {
+    console.error("Error fetching user reviews:", error);
+    res.status(500).json({ message: "Error fetching user reviews" });
   }
 };
 

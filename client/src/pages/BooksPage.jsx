@@ -5,7 +5,7 @@ import Pagination from "../components/books/Pagination";
 import bookService from "../api/services/bookService";
 
 function BooksPage() {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [books, setBooks] = useState([]);

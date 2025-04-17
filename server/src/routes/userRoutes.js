@@ -8,7 +8,10 @@ const userController = require("../controllers/userController");
 router.get("/", adminAuth, userController.getAllUsers);
 
 // Get user profile
-router.get("/:id", userController.getUserProfile);
+router.get("/:id", auth, userController.getUserProfile);
+
+// Get user reviews
+router.get("/:id/reviews", auth, userController.getUserReviews);
 
 // Update user profile
 router.put(
