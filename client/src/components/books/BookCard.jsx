@@ -28,9 +28,7 @@ function BookCard({ book }) {
           <h3 className="font-['Playfair_Display',serif] font-semibold text-lg mb-1 text-gray-800">
             {title}
           </h3>
-          <p className="text-gray-600 text-sm mb-4">by {author}</p>
-
-          <div className="flex items-center mb-2 mt-auto">
+          <p className="text-gray-600 text-sm mb-4">by {author}</p>          <div className="flex items-center mb-2 mt-auto">
             <div className="flex text-amber-400">
               <StarRating rating={averageRating || 0} size="small" />
             </div>
@@ -38,7 +36,7 @@ function BookCard({ book }) {
               ({totalReviews || 0} reviews)
             </span>
           </div>
-          <p className="text-gray-500 text-xs">{genre}</p>  
+          <p className="text-gray-500 text-xs">{Array.isArray(genre) ? genre.join(", ") : genre}</p>  
         </div>
       </div>
     </Link>
