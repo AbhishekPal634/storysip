@@ -38,7 +38,7 @@ function BookCard({ book }) {
               ({totalReviews || 0} reviews)
             </span>
           </div>
-          <p className="text-gray-500 text-xs">{genre}</p>
+          <p className="text-gray-500 text-xs">{genre}</p>  
         </div>
       </div>
     </Link>
