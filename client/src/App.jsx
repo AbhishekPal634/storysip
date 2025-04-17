@@ -1,10 +1,11 @@
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import AuthPage from './pages/AuthPage';
-import BooksPage from './pages/BooksPage';
-import BookDetailPage from './pages/BookDetailPage';
-import AdminPage from './pages/AdminPage';
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import AuthPage from "./pages/AuthPage";
+import BooksPage from "./pages/BooksPage";
+import BookDetailPage from "./pages/BookDetailPage";
+import AdminPage from "./pages/AdminPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/books" element={<BooksPage />} />
           <Route path="/books/:bookId" element={<BookDetailPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute requireAdmin>
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
           {/* Add other routes like user profile later */}
         </Routes>
       </main>

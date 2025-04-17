@@ -1,10 +1,10 @@
-import React from 'react';
-import HeroSection from '../components/home/HeroSection';
-import QuoteSection from '../components/home/QuoteSection';
-import FeaturedBooks from '../components/home/FeaturedBooks';
-import CategoriesSection from '../components/home/CategoriesSection';
-import NewsletterSection from '../components/home/NewsletterSection';
-import CallToAction from '../components/home/CallToAction';
+import React from "react";
+import HeroSection from "../components/home/HeroSection";
+import QuoteSection from "../components/home/QuoteSection";
+import FeaturedBooks from "../components/home/FeaturedBooks";
+// import CategoriesSection from '../components/home/CategoriesSection';
+import NewsletterSection from "../components/home/NewsletterSection";
+import CallToAction from "../components/home/CallToAction";
 
 function HomePage() {
   return (
@@ -12,7 +12,7 @@ function HomePage() {
       <HeroSection />
       <QuoteSection />
       <FeaturedBooks />
-      <CategoriesSection />
+      {/* <CategoriesSection /> */}
       <NewsletterSection />
       <CallToAction />
     </div>
