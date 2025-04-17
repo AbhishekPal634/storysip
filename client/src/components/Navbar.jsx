@@ -23,7 +23,7 @@ function Navbar() {
         const userData = await authService.getUser();
         if (userData) {
           setUser(userData);
-          console.log("User data loaded:", userData);
+          // console.log("User data loaded:", userData);
         } else {
           // If we can't get user data, clear auth
           authService.logout();
