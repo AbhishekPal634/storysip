@@ -18,8 +18,11 @@ function BooksPage() {
     "Fiction",
     "Non-Fiction",
     "Mystery",
-    "Romance",
+    "Fantasy",
     "Sci-Fi",
+    "Romance",
+    "Horror",
+    "Adventure",
   ];
 
   useEffect(() => {
@@ -33,9 +36,17 @@ function BooksPage() {
       const params = {
         page: currentPage,
         limit: 9, // 3x3 grid
-        search: searchQuery,
-        genre: activeFilter === "all" ? undefined : activeFilter.toLowerCase(),
       };
+
+      // Only add search parameter if there's a search query
+      if (searchQuery) {
+        params.search = searchQuery;
+      }
+
+      // Only add genre parameter if a specific genre is selected (not "All")
+      if (activeFilter !== "All") {
+        params.genre = activeFilter;
+      }
 
       const response = await bookService.getBooks(params);
       setBooks(response.books);

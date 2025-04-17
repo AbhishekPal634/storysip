@@ -19,7 +19,7 @@ exports.getAllBooks = async (req, res) => {
 
     // Filter by genre
     if (req.query.genre) {
-      query.genre = req.query.genre;
+      query.genre = { $in: [req.query.genre] };
     }
 
     // Filter by featured
