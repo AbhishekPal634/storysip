@@ -3,7 +3,6 @@ import React from 'react';
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   // page numbers to display
   const getPageNumbers = () => {
-    // we'll show first, current, and last page with ellipsis when needed
     const pages = [];
     
     pages.push(1);

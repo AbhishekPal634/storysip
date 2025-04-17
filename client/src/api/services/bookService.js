@@ -12,16 +12,9 @@ const bookService = {
     const response = await apiClient.get(`/books/${id}`);
     return response.data;
   },
-
   // Create a new book
   createBook: async (bookData) => {
     const response = await apiClient.post("/books", bookData);
-    return response.data;
-  },
-
-  // Update a book
-  updateBook: async (id, bookData) => {
-    const response = await apiClient.put(`/books/${id}`, bookData);
     return response.data;
   },
 

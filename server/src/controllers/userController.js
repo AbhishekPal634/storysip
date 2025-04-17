@@ -68,35 +68,6 @@ exports.updateUserProfile = async (req, res) => {
   }
 };
 
-// Change password
-exports.changePassword = async (req, res) => {
-  try {
-    // Check if user is changing their own password
-    if (req.params.id !== req.user.id) {
-      return res.status(403).json({ message: "Not authorized" });
-    }
-
-    const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Verify current password
-    const isMatch = await user.comparePassword(req.body.currentPassword);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Current password is incorrect" });
-    }
-
-    // Update password
-    user.password = req.body.newPassword;
-    await user.save();
-
-    res.json({ message: "Password updated successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
 // Delete user account
 exports.deleteUser = async (req, res) => {
   try {

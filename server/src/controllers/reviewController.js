@@ -162,31 +162,8 @@ async function updateBookStatistics(bookId) {
     await Book.findByIdAndUpdate(bookId, {
       averageRating: 0,
       totalReviews: 0,
-    });
-  }
+    });  }
 }
-
-// Like/unlike review
-exports.toggleLike = async (req, res) => {
-  try {
-    const review = await Review.findById(req.params.id);
-    if (!review) {
-      return res.status(404).json({ message: "Review not found" });
-    }
-
-    const likeIndex = review.likes.indexOf(req.user.id);
-    if (likeIndex === -1) {
-      review.likes.push(req.user.id);
-    } else {
-      review.likes.splice(likeIndex, 1);
-    }
-
-    await review.save();
-    res.json(review);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-};
 
 // Get all reviews (admin only)
 exports.getAllReviews = async (req, res) => {

@@ -1,7 +1,7 @@
 import React from "react";
-import { HiSearch, HiPlus, HiPencil, HiTrash } from "react-icons/hi";
+import { HiSearch, HiPlus, HiTrash } from "react-icons/hi";
 
-function BooksPanel({ books, onAddBook, onEditBook, onDeleteBook }) {
+function BooksPanel({ books, onAddBook, onDeleteBook }) {
   return (
     <div>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -105,14 +105,7 @@ function BooksPanel({ books, onAddBook, onEditBook, onDeleteBook }) {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-700">
                     {book.published}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button
-                      onClick={() => onEditBook(book)}
-                      className="text-amber-800 hover:text-amber-600 mr-3"
-                    >
-                      <HiPencil className="h-5 w-5" />
-                    </button>
+                  </td>                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => onDeleteBook(book.id)}
                       className="text-red-500 hover:text-red-700"

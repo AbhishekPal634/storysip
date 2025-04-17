@@ -82,8 +82,6 @@ exports.login = async (req, res) => {
 // Get current user
 exports.getCurrentUser = async (req, res) => {
   try {
-    // The auth middleware already sets req.user with the full user object
-    // We just need to send it back
     res.json(req.user);
   } catch (error) {
     res.status(500).json({ message: "Server error" });

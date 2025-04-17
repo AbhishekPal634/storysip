@@ -32,25 +32,6 @@ router.post(
   bookController.createBook
 );
 
-// Update book (admin only)
-router.put(
-  "/:id",
-  [
-    adminAuth,
-    body("title").optional().trim().notEmpty(),
-    body("author").optional().trim().notEmpty(),
-    body("description").optional().trim().notEmpty(),
-    body("isbn").optional().trim().notEmpty(),
-    body("coverImage").optional().trim().notEmpty(),
-    body("genre").optional().isArray(),
-    body("publishedYear").optional().isNumeric(),
-    body("publisher").optional().trim().notEmpty(),
-    body("pageCount").optional().isNumeric(),
-    body("language").optional().trim().notEmpty(),
-  ],
-  bookController.updateBook
-);
-
 // Delete book (admin only)
 router.delete("/:id", adminAuth, bookController.deleteBook);
 

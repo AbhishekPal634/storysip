@@ -34,7 +34,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* Add other routes like user profile later */}
         </Routes>
       </main>
     </div>

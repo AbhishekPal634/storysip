@@ -6,18 +6,14 @@ import BooksPanel from "../components/admin/BooksPanel";
 import UsersPanel from "../components/admin/UsersPanel";
 import ReviewsPanel from "../components/admin/ReviewsPanel";
 import AddBookModal from "../components/admin/AddBookModal";
-import EditBookModal from "../components/admin/EditBookModal";
 import bookService from "../api/services/bookService";
 import userService from "../api/services/userService";
 import authService from "../api/services/authService";
 
 function AdminPage() {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("books");
+  const [isLoading, setIsLoading] = useState(true);  const [activeTab, setActiveTab] = useState("books");
   const [showAddBookModal, setShowAddBookModal] = useState(false);
-  const [showEditBookModal, setShowEditBookModal] = useState(false);
-  const [editingBook, setEditingBook] = useState(null);
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -83,7 +79,6 @@ function AdminPage() {
   if (!user || user.role !== "admin") {
     return <Navigate to="/" replace />;
   }
-
   // Handler for deleting a book
   const handleDeleteBook = async (id) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
@@ -93,25 +88,6 @@ function AdminPage() {
       } catch (err) {
         setError("Failed to delete book. Please try again.");
       }
-    }
-  };
-
-  // Handler for editing a book
-  const handleEditBook = (book) => {
-    setEditingBook(book);
-    setShowEditBookModal(true);
-  };
-
-  // Handler for saving edited book
-  const handleSaveEdit = async (editedBook) => {
-    try {
-      await bookService.updateBook(editedBook._id, editedBook);
-      setBooks(
-        books.map((book) => (book._id === editedBook._id ? editedBook : book))
-      );
-      setShowEditBookModal(false);
-    } catch (err) {
-      setError("Failed to update book. Please try again.");
     }
   };
 
@@ -169,12 +145,10 @@ function AdminPage() {
               <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-amber-800 border-t-transparent"></div>
             </div>
           ) : (
-            <>
-              {activeTab === "books" && (
+            <>              {activeTab === "books" && (
                 <BooksPanel
                   books={books}
                   onAddBook={() => setShowAddBookModal(true)}
-                  onEditBook={handleEditBook}
                   onDeleteBook={handleDeleteBook}
                 />
               )}
@@ -192,21 +166,11 @@ function AdminPage() {
             </>
           )}
         </div>
-      </div>
-
-      {/* Modals */}
+      </div>      {/* Modals */}
       {showAddBookModal && (
         <AddBookModal
           onClose={() => setShowAddBookModal(false)}
           onAddBook={handleAddBook}
-        />
-      )}
-
-      {showEditBookModal && (
-        <EditBookModal
-          book={editingBook}
-          onClose={() => setShowEditBookModal(false)}
-          onSaveEdit={handleSaveEdit}
         />
       )}
     </div>
