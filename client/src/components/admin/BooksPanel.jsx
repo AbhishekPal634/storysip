@@ -72,7 +72,7 @@ function BooksPanel({ books, onAddBook, onDeleteBook }) {
             </thead>
             <tbody className="bg-white divide-y divide-amber-100">
               {books.map((book) => (
-                <tr key={book.id} className="hover:bg-amber-50">
+                <tr key={book._id} className="hover:bg-amber-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="h-10 w-8 mr-3 flex-shrink-0">
@@ -92,22 +92,23 @@ function BooksPanel({ books, onAddBook, onDeleteBook }) {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-amber-100 text-amber-800">
-                      {book.genre}
+                      {Array.isArray(book.genre) ? book.genre.join(", ") : book.genre}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <span className="text-amber-500">★</span>
                       <span className="ml-1 text-gray-700">
-                        {book.rating} ({book.reviews})
+                        {book.averageRating || 0} ({book.totalReviews || 0})
                       </span>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-700">
-                    {book.published}
-                  </td>                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    {book.publishedYear || "N/A"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
-                      onClick={() => onDeleteBook(book.id)}
+                      onClick={() => onDeleteBook(book._id)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <HiTrash className="h-5 w-5" />
